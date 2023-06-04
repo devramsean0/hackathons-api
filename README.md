@@ -1,24 +1,7 @@
-# README
+# Hackathons-API
+This project is a rewrite of the current hackathons.hackclub.com backend
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# ENV variables
+This project using figaro to load env files.
+You can see an example of required env vars in config/application.yml.example which needs to be renamed to application.yml and filled out
