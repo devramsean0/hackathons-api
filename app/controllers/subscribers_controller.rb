@@ -27,6 +27,7 @@ class SubscribersController < ApplicationController
       if @subscriber.save
         format.html { redirect_to subscriber_url(@subscriber), notice: "Subscriber was successfully created." }
         format.json { render :show, status: :created, location: @subscriber }
+        SubscriberUpdatesMailer.new_subscriber(@subscriber.email).deliver_now
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @subscriber.errors, status: :unprocessable_entity }
@@ -40,6 +41,7 @@ class SubscribersController < ApplicationController
       if @subscriber.update(subscriber_params)
         format.html { redirect_to subscriber_url(@subscriber), notice: "Subscriber was successfully updated." }
         format.json { render :show, status: :ok, location: @subscriber }
+        SubscriberUpdatesMailer.updated_subscriber(@subscriber.email).deliver_now
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @subscriber.errors, status: :unprocessable_entity }
@@ -50,7 +52,7 @@ class SubscribersController < ApplicationController
   # DELETE /subscribers/1 or /subscribers/1.json
   def destroy
     @subscriber.destroy
-
+    SubscriberUpdatesMailer.deleted_subscriber(@subscriber.email).deliver_now
     respond_to do |format|
       format.html { redirect_to subscribers_url, notice: "Subscriber was successfully destroyed." }
       format.json { head :no_content }
