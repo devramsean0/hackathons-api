@@ -51,10 +51,12 @@ class SubscribersController < ApplicationController
 
   # DELETE /subscribers/1 or /subscribers/1.json
   def destroy
-    @subscriber.destroy
+    subscriber = Subscriber.find(params[:id])
+    subscriber.unsubscribed_at = Time.now
+    subscriber.save
     SubscriberUpdatesMailer.deleted_subscriber(@subscriber.email).deliver_now
     respond_to do |format|
-      format.html { redirect_to subscribers_url, notice: "Subscriber was successfully destroyed." }
+      format.html { redirect_to subscribers_url, notice: "Subscriber was successfully unsubscribed" }
       format.json { head :no_content }
     end
   end
