@@ -1,0 +1,80 @@
+<%= form_with(model: event) do |form| %>
+  <% if event.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+        <% event.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+  <%= form.label :event_name, style: "display: block" %>
+  <%= form.text_area :event_name %>
+  </div>
+
+  <div>
+  <%= form.label :contact_name, style: "display: block" %>
+  <%= form.text_area :contact_name %>
+  </div>
+
+  <div>
+  <%= form.label :contact_email, style: "display: block" %>
+  <%= form.text_area :contact_email %>
+  </div>
+  <div>
+    <%= form.label :virtual, style: "display: block" %>
+    <%= form.check_box :virtual %>
+  </div>
+  <div>
+    <%= form.label :location, style: "display: block" %>
+    <%= form.text_area :location %>
+  </div>
+
+  <div>
+    <%= form.label :rejected, style: "display: block" %>
+    <%= form.check_box :rejected %>
+  </div>
+
+  <div>
+    <%= form.label :delisted, style: "display: block" %>
+    <%= form.check_box :delisted %>
+  </div>
+
+  <div>
+    <%= form.label :approved, style: "display: block" %>
+    <%= form.check_box :approved %>
+  </div>
+
+  <div>
+    <%= form.label :logo_url, style: "display: block" %>
+    <%= form.text_area :logo_url %>
+  </div>
+
+  <div>
+    <%= form.label :banner_url, style: "display: block" %>
+    <%= form.text_area :banner_url %>
+  </div>
+
+  <div>
+    <%= form.label :wants_postcards, style: "display: block" %>
+    <%= form.check_box :wants_postcards %>
+  </div>
+
+  <div>
+    <%= form.label :mailing_address, style: "display: block" %>
+    <%= form.text_area :mailing_address %>
+  </div>
+
+  <div>
+    <%= form.label :subscriber_email_sent, style: "display: block" %>
+    <%= form.check_box :subscriber_email_sent %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
